@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Clothes4U</title>
+</head>
+
+<body>
+    <div class="container">
+        <!--NAV-START-->
+        <div class="logo">
+            <span>CLOTHES4U</span>
+        </div>
+        <div class="nav">
+            <ul>
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Products</a>
+                </li>
+                <li>
+                    <a href="#">Blog</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+                <li>
+                    <a href="#">Login</a>
+                </li>
+                <li>
+                    <a href="#">Sign up</a>
+                </li>
+            </ul>
+        </div>
+
+        <!--NAV-END-->
+
+        <!--PRODUCT SECTION START-->
+        <div class="wrapper">
+            <div id="buttons">
+                <button class="button-value" onclick="filterProduct('all')">All</button>
+                <button class="button-value" onclick="filterProduct('Topwear')">
+                    Topwear
+                </button>
+                <button class="button-value" onclick="filterProduct('Bottomwear')">
+                    Bottomwear
+                </button>
+                <button class="button-value" onclick="filterProduct('Jacket')">
+                    Jacket
+                </button>
+            </div>
+            <div id="products"></div>
+        </div>
+    </div>
+    <!--PRODUCT SECTION END-->
+    <!--FOOTER START-->
+    <div class="footer">
+        <div class="secondnav">
+            <ul>
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Products</a>
+                </li>
+                <li>
+                    <a href="#">Blog</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+                <li>
+                    <a href="#">Login</a>
+                </li>
+                <li>
+                    <a href="#">Sign up</a>
+                </li>
+            </ul>
+        </div>
+        <div class="contacts">
+            <ul>
+                <li>
+                    <span>Email: clothes4u@gmail.com</span>
+                </li>
+                <li>
+                    <span>Phone: 043253543</span>
+                </li>
+                <li>
+                    <span>Adress: West Street,New York</span>
+                </li>
+                <li>
+                    <span><i class="fa-brands fa-facebook-f"></i></i>: Clothes4U</span>
+                </li>
+                <li>
+                    <span><i class="fa-brands fab fa-instagram"></i></i>: Clothes4U</span>
+                </li>
+            </ul>
+        </div>
+        <div class="map">
+            <div class="mapouter"><div class="gmap_canvas"><iframe width="573" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=new%20york%20manhatt&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.org">123movies</a><br><style>.mapouter{position:relative;text-align:right;height:300px;width:573px;}</style><a href="https://www.embedgooglemap.net">embedgooglemap.net</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:300px;width:573px;}</style></div></div>
+        </div>
+    </div>
+    <!--FOOTER END-->
+    </div>
+    <script>
+           let products = {
+            data: [
+                {
+                    productName: " White T-Shirt", category: "Topwear", price: "30", image: "white-tshirt.jpg",
+                },
+                {
+                    productName: "Beige Short Skirt", category: "Bottomwear", price: "49", image: "short-skirt.jpg",
+                },
+                {
+                    productName: "Top", category: "Topwear", price: "29", image: "knitted-top.jpg",
+                },
+                {
+                    productName: "Leather Jacket", category: "Jacket", price: "129", image: "black-leather-jacket.jpg",
+                },
+                {
+                    productName: "Pink Trousers", category: "Bottomwear", price: "89", image: "pink-trousers.jpg",
+                },
+                {
+                    productName: "Brown Men's Jacket", category: "Jacket", price: "189", image: "brown-jacket.jpg",
+                },
+                {
+                    productName: " Gray Pants", category: "Bottomwear", price: "49", image: "comfy-gray-pants.jpg",
+                },
+            ],
+        };
+        for (let i of products.data) {
+            let card = document.createElement("div");
+            card.classList.add("card", i.category, "hide");
+            let imgContainer = document.createElement("div");
+            imgContainer.classList.add("image-container");
+            let image = document.createElement("img");
+            image.setAttribute("src", i.image);
+            imgContainer.appendChild(image);
+            card.appendChild(imgContainer);
+            let container = document.createElement("div");
+            container.classList.add("container");
+            let name = document.createElement("h4");
+            name.classList.add("product-name");
+            name.innerText = i.productName.toUpperCase();
+            container.appendChild(name);
+            let price = document.createElement("h5");
+            price.innerText = "$" + i.price;
+            container.appendChild(price);
+            card.appendChild(container);
+            document.getElementById("products").appendChild(card);
+        }
+        function filterProduct(value) {
+            let buttons = document.querySelectorAll(".button-value");
+            buttons.forEach((button) => {
+                if (value.toUpperCase() == button.innerText.toUpperCase()) {
+                    button.classList.add("active");
+                } else {
+                    button.classList.remove("active");
+                }
+            });
+            let elements = document.querySelectorAll(".card");
+            elements.forEach((element) => {
+                if (value == "all") {
+                    element.classList.remove("hide");
+                } else {
+                    if (element.classList.contains(value)) {
+                        element.classList.remove("hide");
+                    } else {
+                        element.classList.add("hide");
+                    }
+                }
+            });
+        }
+        window.onload = () => {
+            filterProduct("all");
+        };
+
+    </script>
+</body>
+
+</html>
